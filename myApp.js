@@ -2,9 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const app = express();
 
-
-
-// Use helmet middleware
+// Use helmet middleware to hide X-Powered-By header
 app.use(helmet.hidePoweredBy());
 
 // Serve static files from the 'public' directory
@@ -15,9 +13,6 @@ const api = require('./server.js');
 
 // Use API routes
 app.use('/_api', api);
-
-// Disable strict-transport-security
-app.disable('strict-transport-security');
 
 // Serve the main page
 app.get("/", function (request, response) {
