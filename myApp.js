@@ -2,8 +2,10 @@ const express = require('express');
 const helmet = require('helmet');
 const app = express();
 
+
+
 // Use helmet middleware
-app.use(helmet());
+app.use(helmet.hidePoweredBy());
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
