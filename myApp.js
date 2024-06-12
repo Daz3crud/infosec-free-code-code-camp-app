@@ -19,10 +19,16 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 // Define the port to listen on
 let port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Useful programmer Info Security App Started on Port ${port}`);
+  console.log(`App started on port ${port}`);
 });
 
 module.exports = app;
