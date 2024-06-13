@@ -5,7 +5,7 @@ const app = express();
 // Use helmet middleware to hide X-Powered-By header
 app.use(helmet.hidePoweredBy());
 app.use(helmet.frameguard({ action: 'deny' }));
-app.use(helmet.xssFilter());
+app.use(helmet.xssFilter())
 
 
 
