@@ -3,30 +3,22 @@ const helmet = require('helmet');
 const app = express();
 
 // Use helmet middleware to hide X-Powered-By header
-app.use(helmet.hidePoweredBy());
-app.use(helmet.frameguard({ action: 'deny' }));
-app.use(helmet.xssFilter());
-app.use(helmet.noSniff());
-app.use(helmet.ieNoOpen());
-
-const timeInseconds = 90 * 24 * 60 * 60;
-app.use(helmet.hsts({maxAge: timeInseconds, force: true}));
-
-//prefect controller
-app.use(helmet.dnsPrefetchControl());
-//disble client-side Cashing 
-app.use(helmet.noCache());
-
-
-//Security Policy 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'", 'trusted-cdn.com']
+app.use(helmet({
+  hidePoweredBy: true,
+  frameguard: { action: 'deny' },
+  xssFilter: true,
+  noSniff: true,
+  ieNoOpen: true,
+  hsts: { maxAge: 90 * 24 * 60 * 60, force: true },
+  dnsPrefetchControl: true,
+  noCache: true,
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'trusted-cdn.com']
+    }
   }
-  })
-);
-
+}));
 
 
 
