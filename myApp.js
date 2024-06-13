@@ -19,10 +19,19 @@ app.use(helmet.noCache());
 
 
 //Security Policy 
-//app.use(helmet.contentSecurityPolicy({
- // directives: {
-   // defaultSrc: ["'self"],
-   // scriptSrc: ["'self'", 'trusted-cdn.com']}));
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", 'trusted-cdn.com']
+  }
+  })
+);
+
+
+
+
+
+
 
 module.exports = app;
 const api = require('./server.js');
