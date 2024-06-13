@@ -14,6 +14,8 @@ app.use(helmet.hsts({maxAge: timeInseconds, force: true}));
 
 //prefect controller
 app.use(helmet.dnsPrefetchControl());
+//disble client-side Cashing 
+app.use(helmet.noCache());
 
 
 
